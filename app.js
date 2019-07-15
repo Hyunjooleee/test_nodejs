@@ -4,9 +4,15 @@ const port = 3000
 
 //app.get('/', (req, res) => res.send('Hello World!'))
 
+app.use(express.static('public'))
 
 const path = require('path');
 const router = express.Router();
+
+router.get('/main', function (req, res) {
+    res.sendFile(path.join(__dirname + '/main.html'));
+    //__dirname : It will resolve to your project folder.
+    });
 
 router.get('/sub01', function (req, res) {
     res.sendFile(path.join(__dirname + '/sub_stylesheets/sub01.html'));
@@ -28,8 +34,12 @@ router.get('/sub04', function (req, res) {
     //__dirname : It will resolve to your project folder.
     });
 
+router.get('/sub_no1', function (req, res) {
+    res.sendFile(path.join(__dirname + '/sub_nostylesheets/sub_no1.html'));
+    //__dirname : It will resolve to your project folder.
+    });
+
 app.use('/', router);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
-// app.use(express.static('public'))
